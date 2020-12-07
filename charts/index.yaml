@@ -3,7 +3,7 @@ entries:
   consul:
   - apiVersion: v1
     appVersion: 1.7.2
-    created: "2020-12-07T17:04:30.360378+08:00"
+    created: "2020-12-07T17:10:37.771617+08:00"
     description: Official HashiCorp Consul Chart
     digest: e1c53fdf8644c271f047ac9c04794093cfd7fb245fd4a6b10c107a8ad659a227
     home: https://www.consul.io
@@ -13,6 +13,6 @@ entries:
     - https://github.com/hashicorp/consul-helm
     - https://github.com/hashicorp/consul-k8s
     urls:
-    - https://adrise.github.io/helm-charts/consul-0.20.1-1.tgz
+    - https://adrise.github.io/helm-charts/charts/consul-0.20.1-1.tgz
     version: 0.20.1-1
-generated: "2020-12-07T17:04:30.355363+08:00"
+generated: "2020-12-07T17:10:37.76688+08:00"

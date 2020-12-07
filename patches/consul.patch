@@ -1,0 +1,31 @@
+diff -urN consul.orig/Chart.yaml consul/Chart.yaml
+--- consul.orig/Chart.yaml	2020-04-28 07:35:46.000000000 +0800
++++ consul/Chart.yaml	2020-12-07 15:07:25.000000000 +0800
+@@ -7,4 +7,4 @@
+ - https://github.com/hashicorp/consul
+ - https://github.com/hashicorp/consul-helm
+ - https://github.com/hashicorp/consul-k8s
+-version: 0.20.1
++version: 0.20.1-1
+diff -urN consul.orig/templates/client-daemonset.yaml consul/templates/client-daemonset.yaml
+--- consul.orig/templates/client-daemonset.yaml	2020-04-28 07:35:46.000000000 +0800
++++ consul/templates/client-daemonset.yaml	2020-12-07 14:31:59.000000000 +0800
+@@ -159,7 +159,8 @@
+             - "-ec"
+             - |
+               CONSUL_FULLNAME="{{template "consul.fullname" . }}"
+-
++              mkdir -p /consul/tubi-config && cp /consul/config/*.json /consul/tubi-config
++              find /consul/tubi-config -type f -name "*.json" -exec sed -Ei "s|HOST_IP|${HOST_IP?}|g" {} \;
+               exec /bin/consul agent \
+                 -node="${NODE}" \
+                 -advertise="${ADVERTISE_IP}" \
+@@ -191,7 +192,7 @@
+                 {{- if .Values.client.grpc }}
+                 -hcl='ports { grpc = 8502 }' \
+                 {{- end }}
+-                -config-dir=/consul/config \
++                -config-dir=/consul/tubi-config \
+                 {{- range .Values.client.extraVolumes }}
+                 {{- if .load }}
+                 -config-dir=/consul/userconfig/{{ .name }} \
