@@ -1,0 +1,42 @@
+diff -urN kiam.orig/Chart.yaml kiam/Chart.yaml
+--- kiam.orig/Chart.yaml	2020-12-10 19:41:20.000000000 +0800
++++ kiam/Chart.yaml	2021-01-08 19:09:50.000000000 +0800
+@@ -15,4 +15,4 @@
+ name: kiam
+ sources:
+ - https://github.com/uswitch/kiam
+-version: 5.10.0
++version: 5.10.0-1
+diff -urN kiam.orig/templates/server-daemonset.yaml kiam/templates/server-daemonset.yaml
+--- kiam.orig/templates/server-daemonset.yaml	2020-12-10 19:41:20.000000000 +0800
++++ kiam/templates/server-daemonset.yaml	2021-01-08 19:06:42.000000000 +0800
+@@ -91,6 +91,7 @@
+             - --assume-role-arn={{ .Values.server.assumeRoleArn }}
+             {{- end }}
+             - --session-duration={{ .Values.server.sessionDuration }}
++            - --session-refresh={{ .Values.server.sessionRefresh }}
+             - --sync={{ .Values.server.cache.syncInterval }}
+             {{- if .Values.server.prometheus.scrape }}
+             - --prometheus-listen-addr=0.0.0.0:{{ .Values.server.prometheus.port }}
+diff -urN kiam.orig/templates/server-deployment.yaml kiam/templates/server-deployment.yaml
+--- kiam.orig/templates/server-deployment.yaml	2020-12-10 19:41:20.000000000 +0800
++++ kiam/templates/server-deployment.yaml	2021-01-08 19:07:14.000000000 +0800
+@@ -110,6 +110,7 @@
+             - --assume-role-arn={{ .Values.server.assumeRoleArn }}
+             {{- end }}
+             - --session-duration={{ .Values.server.sessionDuration }}
++            - --session-refresh={{ .Values.server.sessionRefresh }}
+             - --sync={{ .Values.server.cache.syncInterval }}
+             {{- if .Values.server.prometheus.scrape }}
+             - --prometheus-listen-addr=0.0.0.0:{{ .Values.server.prometheus.port }}
+diff -urN kiam.orig/values.yaml kiam/values.yaml
+--- kiam.orig/values.yaml	2020-12-10 19:41:20.000000000 +0800
++++ kiam/values.yaml	2021-01-08 19:05:39.000000000 +0800
+@@ -342,6 +342,7 @@
+   ## Session duration for STS tokens
+   ##
+   sessionDuration: 15m
++  sessionRefresh: 5m
+   ## Use hostNetwork for server
+   ## Set this to true when running the servers on the same nodes as the agents
+   useHostNetwork: false
