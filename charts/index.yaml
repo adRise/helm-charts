@@ -3,7 +3,7 @@ entries:
   consul:
   - apiVersion: v1
     appVersion: 1.7.2
-    created: "2020-12-07T17:10:37.771617+08:00"
+    created: "2021-01-08T19:10:27.366492+08:00"
     description: Official HashiCorp Consul Chart
     digest: e1c53fdf8644c271f047ac9c04794093cfd7fb245fd4a6b10c107a8ad659a227
     home: https://www.consul.io
@@ -15,4 +15,26 @@ entries:
     urls:
     - https://adrise.github.io/helm-charts/charts/consul-0.20.1-1.tgz
     version: 0.20.1-1
-generated: "2020-12-07T17:10:37.76688+08:00"
+  kiam:
+  - apiVersion: v1
+    appVersion: "3.6"
+    created: "2021-01-08T19:10:27.367897+08:00"
+    description: Integrate AWS IAM with Kubernetes
+    digest: b9b5aebd45f23bfec156791680ef79e338eca1164fd8c2c15c7c67eb1469e128
+    home: https://github.com/uswitch/kiam
+    icon: https://user-images.githubusercontent.com/44974642/63503185-ee2ce880-c4c6-11e9-9a65-c398db914289.png
+    keywords:
+    - kiam
+    - aws
+    - iam
+    - security
+    maintainers:
+    - email: cloud@uswitch.com
+      name: uswitch
+    name: kiam
+    sources:
+    - https://github.com/uswitch/kiam
+    urls:
+    - https://adrise.github.io/helm-charts/charts/kiam-5.10.0-1.tgz
+    version: 5.10.0-1
+generated: "2021-01-08T19:10:27.361589+08:00"
