@@ -2,26 +2,25 @@ apiVersion: v1
 entries:
   airflow:
   - apiVersion: v1
-    appVersion: 2.0.1
-    created: "2021-04-14T16:37:28.514009+08:00"
+    created: "2021-04-14T16:48:33.90349+08:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
       repository: '@stable'
       version: 6.3.12
     description: Helm chart to deploy Apache Airflow
-    digest: a2fa31daa6d0e25a097c6cb306c0a15d4d657b25d8b6c5dffce92c5535ff0a9c
+    digest: b002fe24968034ccbc42ac903370bd8855bab0b59ad073dbfae09b7813a02a33
     icon: https://airflow.apache.org/docs/apache-airflow/stable/_images/pin_large.png
     keywords:
     - airflow
     name: airflow
     urls:
-    - https://adrise.github.io/helm-charts/charts/airflow-1.0.0.tgz
-    version: 1.0.0
+    - https://adrise.github.io/helm-charts/charts/airflow-2.0.1.tgz
+    version: 2.0.1
   consul:
   - apiVersion: v1
     appVersion: 1.7.2
-    created: "2021-04-14T16:37:28.516551+08:00"
+    created: "2021-04-14T16:48:33.907362+08:00"
     description: Official HashiCorp Consul Chart
     digest: e1c53fdf8644c271f047ac9c04794093cfd7fb245fd4a6b10c107a8ad659a227
     home: https://www.consul.io
@@ -36,7 +35,7 @@ entries:
   kiam:
   - apiVersion: v1
     appVersion: "3.6"
-    created: "2021-04-14T16:37:28.517833+08:00"
+    created: "2021-04-14T16:48:33.909183+08:00"
     description: Integrate AWS IAM with Kubernetes
     digest: b9b5aebd45f23bfec156791680ef79e338eca1164fd8c2c15c7c67eb1469e128
     home: https://github.com/uswitch/kiam
@@ -55,4 +54,4 @@ entries:
     urls:
     - https://adrise.github.io/helm-charts/charts/kiam-5.10.0-1.tgz
     version: 5.10.0-1
-generated: "2021-04-14T16:37:28.505278+08:00"
+generated: "2021-04-14T16:48:33.896366+08:00"
