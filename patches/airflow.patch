@@ -1,0 +1,12 @@
+diff --git a/chart/templates/rbac/pod-launcher-rolebinding.yaml b/chart/templates/rbac/pod-launcher-rolebinding.yaml
+index 6b44f5060..ddfb8edc6 100644
+--- a/chart/templates/rbac/pod-launcher-rolebinding.yaml
++++ b/chart/templates/rbac/pod-launcher-rolebinding.yaml
+@@ -59,4 +59,7 @@ subjects:
+     name: {{ .Release.Name }}-worker
+     namespace: {{ .Release.Namespace }}
+ {{- end }}
++  - kind: ServiceAccount
++    name: {{ .Release.Name }}-webserver
++    namespace: {{ .Release.Namespace }}
+ {{- end }}
