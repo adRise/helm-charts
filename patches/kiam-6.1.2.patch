@@ -1,0 +1,40 @@
+diff --git a/kiam-source/Chart.yaml b/kiam/Chart.yaml
+index 25eaad2..22c8101 100644
+--- a/kiam-source/Chart.yaml
++++ b/kiam/Chart.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: v1
+ name: kiam
+ version: 6.1.2
+-appVersion: 4.0
++appVersion: 4.2
+ description: Integrate AWS IAM with Kubernetes
+ keywords:
+   - kiam
+diff --git a/kiam-source/templates/_helpers.tpl b/kiam/templates/_helpers.tpl
+index 14281dc..2272bec 100644
+--- a/kiam-source/templates/_helpers.tpl
++++ b/kiam/templates/_helpers.tpl
+@@ -93,18 +93,18 @@ Create the name of the server service account to use.
+ Generate certificates for kiam server and agent
+ */}}
+ {{- define "kiam.agent.gen-certs" -}}
+-{{- $ca := .ca | default (genCA "kiam-ca" 365) -}}
++{{- $ca := .ca | default (genCA "kiam-ca" 3650) -}}
+ {{- $_ := set . "ca" $ca -}}
+-{{- $cert := genSignedCert "Kiam Agent" nil nil 365 $ca -}}
++{{- $cert := genSignedCert "Kiam Agent" nil nil 3650 $ca -}}
+ {{.Values.agent.tlsCerts.caFileName }}: {{ $ca.Cert | b64enc }}
+ {{.Values.agent.tlsCerts.certFileName }}: {{ $cert.Cert | b64enc }}
+ {{.Values.agent.tlsCerts.keyFileName }}: {{ $cert.Key | b64enc }}
+ {{- end -}}
+ {{- define "kiam.server.gen-certs" -}}
+ {{- $altNames := list (include "kiam.server.fullname" .) (printf "%s:%d" (include "kiam.server.fullname" .) (int64 .Values.server.service.port)) (printf "127.0.0.1:%d" (int64 .Values.server.service.targetPort)) -}}
+-{{- $ca := .ca | default (genCA "kiam-ca" 365) -}}
++{{- $ca := .ca | default (genCA "kiam-ca" 3650) -}}
+ {{- $_ := set . "ca" $ca -}}
+-{{- $cert := genSignedCert "Kiam Server" (list "127.0.0.1") $altNames 365 $ca -}}
++{{- $cert := genSignedCert "Kiam Server" (list "127.0.0.1") $altNames 3650 $ca -}}
+ {{.Values.server.tlsCerts.caFileName }}: {{ $ca.Cert | b64enc }}
+ {{.Values.server.tlsCerts.certFileName }}: {{ $cert.Cert | b64enc }}
+ {{.Values.server.tlsCerts.keyFileName }}: {{ $cert.Key | b64enc }}
