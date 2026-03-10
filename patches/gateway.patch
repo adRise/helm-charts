@@ -1,0 +1,21 @@
+diff --color=auto -urN gateway-1.23.6.orig/Chart.yaml gateway/Chart.yaml
+--- gateway-1.23.6.orig/Chart.yaml	2025-04-03 09:45:15
++++ gateway/Chart.yaml	2026-03-05 10:43:57
+@@ -9,4 +9,4 @@
+ sources:
+ - https://github.com/istio/istio
+ type: application
+-version: 1.23.6
++version: 1.23.6-1
+diff --color=auto -urN gateway-1.23.6.orig/templates/service.yaml gateway/templates/service.yaml
+--- gateway-1.23.6.orig/templates/service.yaml	2025-04-03 09:45:15
++++ gateway/templates/service.yaml	2026-03-05 10:43:57
+@@ -38,7 +38,7 @@
+ {{- end }}
+   type: {{ .Values.service.type }}
+   ports:
+-{{- if .Values.networkGateway }}
++{{- if and .Values.networkGateway (not .Values.service.ports) }}
+   - name: status-port
+     port: 15021
+     targetPort: 15021
